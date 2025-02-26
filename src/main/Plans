@@ -16,6 +16,7 @@ film ---> language POSSIBLY CATEGORY (IF WANTED ELABORATE SEARCH SCHEMA)->
             POSSIBLY actor for rental information??
 language ---> X
 
+{NO MANY TO MANY RESOLUTIONS NEEDED}
 -------required requests-------
 
 We will want to make new customers,
@@ -55,3 +56,6 @@ payment
 inventory
 film
 language
+
+smallint = short
+tinyint = byte

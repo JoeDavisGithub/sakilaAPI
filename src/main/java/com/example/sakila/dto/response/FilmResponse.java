@@ -17,7 +17,8 @@ public class FilmResponse {
     private final String title;
     private final String description;
     private final Year release_year;
-    private final Short rental_duration;
+    private final Byte language_id;
+    private final Byte rental_duration;
     private final Float rental_rate;
     private final Short length;
     private final Float replacement_cost;
@@ -31,6 +32,7 @@ public class FilmResponse {
                 film.getTitle(),
                 film.getDescription(),
                 film.getRelease_year(),
+                film.getLanguage_id(),
                 film.getRental_duration(),
                 film.getRental_rate(),
                 film.getLength(),

@@ -32,10 +32,10 @@ public class Film {
     private Year release_year;
 
     @Column(name="language_id")
-    private Short language_id;
+    private Byte language_id;
 
     @Column(name="rental_duration")
-    private Short rental_duration;
+    private Byte rental_duration;
 
     @Column(name="rental_rate")
     private Float rental_rate;
