@@ -1,18 +1,11 @@
 package com.example.sakila.controllers;
-
 import com.example.sakila.dto.ValidationGroup;
 import com.example.sakila.dto.request.ActorRequest;
 import com.example.sakila.dto.response.ActorResponse;
-import com.example.sakila.entities.Actor;
-
 import com.example.sakila.services.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
