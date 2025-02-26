@@ -27,6 +27,10 @@ public class Staff {
     @Column(name="last_name")
     private String lastName;
 
+    @Formula("concat(first_name,' ',last_name)")
+    @Setter(AccessLevel.NONE)
+    private String fullName;
+
     @Column(name="address_id")
     private Short addressId;
 

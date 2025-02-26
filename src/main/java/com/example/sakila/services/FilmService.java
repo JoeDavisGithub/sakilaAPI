@@ -44,7 +44,7 @@ public class FilmService {
     }
 
     public Film createFilm(
-            String title, String description, Year release_year,
+            String title, String description, Short release_year,
             Byte language_id, Byte rental_duration,Float rental_rate,
             Short length,Float replacement_cost,String rating,
             String special_features, List<Short> actorIds
@@ -52,7 +52,7 @@ public class FilmService {
         final var film= new Film();
         film.setTitle(title);
         film.setDescription(description);
-        film.setRelease_year(release_year);
+        film.setRelease_year(Year.of(release_year));
         film.setLanguage_id(language_id);
         film.setRental_duration(rental_duration);
         film.setRental_rate(rental_rate);
@@ -76,7 +76,7 @@ public class FilmService {
     }
 
     public Film updateFilm(
-            Short Id,String title, String description, Year release_year,
+            Short Id,String title, String description, Short release_year,
             Byte language_id, Byte rental_duration,Float rental_rate,
             Short length,Float replacement_cost,String rating,
             String special_features, List<Short> actorIds
@@ -90,7 +90,8 @@ public class FilmService {
             film.setDescription(description);
         }
         if (release_year!=null){
-            film.setRelease_year(release_year);
+            final Year year = Year.of(release_year);
+            film.setRelease_year(year);
         }
         if (language_id!=null){
             film.setLanguage_id(language_id);

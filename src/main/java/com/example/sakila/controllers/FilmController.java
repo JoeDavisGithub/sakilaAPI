@@ -1,16 +1,11 @@
 package com.example.sakila.controllers;
+import com.example.sakila.dto.ValidationGroup;
 import com.example.sakila.dto.request.FilmRequest;
 import com.example.sakila.dto.response.FilmResponse;
-import com.example.sakila.entities.Film;
-import com.example.sakila.repositories.ActorRepository;
-import com.example.sakila.repositories.FilmRepository;
 import com.example.sakila.services.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +38,7 @@ public class FilmController {
     }
 
     @PostMapping
-    public FilmResponse createFilm(@RequestBody FilmRequest data){
+    public FilmResponse createFilm(@Validated(ValidationGroup.Create.class) @RequestBody FilmRequest data){
         final var savedfilm=filmService.createFilm(
                 data.getTitle(),
                 data.getDescription(),
