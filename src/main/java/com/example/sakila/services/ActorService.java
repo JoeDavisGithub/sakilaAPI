@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,12 @@ public class ActorService {
     public List<Actor> listActors() {
         return actorRepository.findAll();
     }
+
+    public Page<ActorResponse> getActorPage(PageRequest pageRequest){
+        return actorRepository.findAll(pageRequest).map(ActorResponse::from);
+    }
+
+
     public List<Actor> findByFullName(String name) {
         return actorRepository.findByFullNameContainingIgnoreCase(name);
     }

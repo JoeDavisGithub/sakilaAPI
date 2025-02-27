@@ -1,9 +1,12 @@
 package com.example.sakila.controllers;
 import com.example.sakila.dto.ValidationGroup;
 import com.example.sakila.dto.request.FilmRequest;
+import com.example.sakila.dto.response.ActorResponse;
 import com.example.sakila.dto.response.FilmResponse;
 import com.example.sakila.services.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -20,7 +23,7 @@ public class FilmController {
         this.filmService=filmService;
     }
 
-    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+    /*@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     @GetMapping
     public List<FilmResponse> listFilms(@RequestParam(required=false) Optional<String> title){
         return title
@@ -30,6 +33,18 @@ public class FilmController {
                 .map(FilmResponse::from)
                 .toList();
     }
+*/
+    @GetMapping
+    public Page<FilmResponse> getUsers(@RequestParam(value = "offset", required = false) Integer offset,
+                                        @RequestParam(value = "pageSize", required = false) Integer pageSize,
+                                        @RequestParam(value="sortBy",required = false)String sortBy) {
+        if(null == offset) offset = 0;
+        if(null == pageSize) pageSize = 10;
+        if(null == sortBy) sortBy ="id";
+        return filmService.getFilmPage(PageRequest.of(offset,pageSize));
+    }
+
+
 
     @GetMapping("/{id}")
     public FilmResponse listFilms(@PathVariable Short id){

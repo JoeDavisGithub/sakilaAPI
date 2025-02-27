@@ -1,23 +1,18 @@
 package com.example.sakila.services;
-
-
-import com.example.sakila.dto.request.FilmRequest;
+import com.example.sakila.dto.response.ActorResponse;
 import com.example.sakila.dto.response.FilmResponse;
 import com.example.sakila.entities.Film;
 import com.example.sakila.repositories.ActorRepository;
 import com.example.sakila.repositories.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FilmService {
@@ -32,6 +27,10 @@ public class FilmService {
 
     public List<Film> listFilms(){
         return filmRepository.findAll();
+    }
+
+    public Page<FilmResponse> getFilmPage(PageRequest pageRequest){
+        return filmRepository.findAll(pageRequest).map(FilmResponse::from);
     }
 
     public List<Film> findByTitle(String title){

@@ -2,10 +2,23 @@ package com.example.sakila.controllers;
 import com.example.sakila.dto.ValidationGroup;
 import com.example.sakila.dto.request.ActorRequest;
 import com.example.sakila.dto.response.ActorResponse;
+import com.example.sakila.entities.Actor;
 import com.example.sakila.services.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.List;
+import java.util.Objects;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +34,9 @@ public class ActorController {
         this.actorService=actorService;
     }
 
-    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+    /*@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     @GetMapping
-    public List<ActorResponse> listActors(@RequestParam(required = false) Optional<String> name){
+    public List<ActorResponse> listActors(@RequestParam(required = false) Optional<String> name) {
         return name
                 .map(actorService::findByFullName)
                 .orElseGet(actorService::listActors)
@@ -31,6 +44,17 @@ public class ActorController {
                 .map(ActorResponse::from)
                 .toList();
     }
+    */
+    @GetMapping
+    public Page<ActorResponse> getUsers(@RequestParam(value = "offset", required = false) Integer offset,
+                                @RequestParam(value = "pageSize", required = false) Integer pageSize,
+                                        @RequestParam(value="sortBy",required = false)String sortBy) {
+        if(null == offset) offset = 0;
+        if(null == pageSize) pageSize = 10;
+        if(null == sortBy) sortBy ="id";
+        return actorService.getActorPage(PageRequest.of(offset,pageSize));
+    }
+
 
     @GetMapping("/{id}")
     public ActorResponse listActors(@PathVariable Short id){
