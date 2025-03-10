@@ -4,12 +4,14 @@ import com.example.sakila.entities.Actor;
 import com.example.sakila.entities.Film;
 import jakarta.servlet.http.Part;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.List;
 
 @AllArgsConstructor
 @Getter
+@EqualsAndHashCode
 public class ActorResponse {
     private final Short id;
     private final String firstName;

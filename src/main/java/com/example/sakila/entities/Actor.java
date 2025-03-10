@@ -2,9 +2,7 @@ package com.example.sakila.entities;
 
 import jakarta.persistence.*;
 import jakarta.websocket.server.ServerEndpoint;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Formula;
 
 import java.util.ArrayList;
@@ -14,6 +12,9 @@ import java.util.List;
 @Table(name="actor")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

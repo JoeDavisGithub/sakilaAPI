@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/films")
+@CrossOrigin(origins="*")
 public class FilmController {
 
     final FilmService filmService;
@@ -23,7 +24,7 @@ public class FilmController {
         this.filmService=filmService;
     }
 
-    /*@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     @GetMapping
     public List<FilmResponse> listFilms(@RequestParam(required=false) Optional<String> title){
         return title
@@ -33,16 +34,15 @@ public class FilmController {
                 .map(FilmResponse::from)
                 .toList();
     }
-*/
-    @GetMapping
-    public Page<FilmResponse> getUsers(@RequestParam(value = "offset", required = false) Integer offset,
+  /*  @GetMapping
+    public Page<FilmResponse> getFilms(@RequestParam(value = "offset", required = false) Integer offset,
                                         @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                         @RequestParam(value="sortBy",required = false)String sortBy) {
         if(null == offset) offset = 0;
         if(null == pageSize) pageSize = 10;
         if(null == sortBy) sortBy ="id";
         return filmService.getFilmPage(PageRequest.of(offset,pageSize));
-    }
+    }*/
 
 
 

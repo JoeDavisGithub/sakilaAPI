@@ -24,6 +24,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/actors")
+@CrossOrigin(origins="*")
 public class ActorController {
 
     final ActorService actorService;
@@ -34,7 +35,7 @@ public class ActorController {
         this.actorService=actorService;
     }
 
-    /*@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     @GetMapping
     public List<ActorResponse> listActors(@RequestParam(required = false) Optional<String> name) {
         return name
@@ -44,16 +45,15 @@ public class ActorController {
                 .map(ActorResponse::from)
                 .toList();
     }
-    */
-    @GetMapping
-    public Page<ActorResponse> getUsers(@RequestParam(value = "offset", required = false) Integer offset,
+    /*@GetMapping
+    public Page<ActorResponse> getActors(@RequestParam(value = "offset", required = false) Integer offset,
                                 @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                         @RequestParam(value="sortBy",required = false)String sortBy) {
         if(null == offset) offset = 0;
         if(null == pageSize) pageSize = 10;
         if(null == sortBy) sortBy ="id";
         return actorService.getActorPage(PageRequest.of(offset,pageSize));
-    }
+    }*/
 
 
     @GetMapping("/{id}")
