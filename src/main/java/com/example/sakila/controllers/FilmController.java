@@ -34,15 +34,15 @@ public class FilmController {
                 .map(FilmResponse::from)
                 .toList();
     }
-  /*  @GetMapping
+    @GetMapping("/page")
     public Page<FilmResponse> getFilms(@RequestParam(value = "offset", required = false) Integer offset,
                                         @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                         @RequestParam(value="sortBy",required = false)String sortBy) {
         if(null == offset) offset = 0;
-        if(null == pageSize) pageSize = 10;
+        if(null == pageSize) pageSize = 12;
         if(null == sortBy) sortBy ="id";
         return filmService.getFilmPage(PageRequest.of(offset,pageSize));
-    }*/
+    }
 
 
 

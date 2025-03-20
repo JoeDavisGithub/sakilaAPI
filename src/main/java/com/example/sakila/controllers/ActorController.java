@@ -45,15 +45,15 @@ public class ActorController {
                 .map(ActorResponse::from)
                 .toList();
     }
-    /*@GetMapping
-    public Page<ActorResponse> getActors(@RequestParam(value = "offset", required = false) Integer offset,
+    @GetMapping("/page")
+    public Page<ActorResponse> getActors(@RequestParam(value = "offset", required = false) Short offset,
                                 @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                         @RequestParam(value="sortBy",required = false)String sortBy) {
         if(null == offset) offset = 0;
-        if(null == pageSize) pageSize = 10;
+        if(null == pageSize) pageSize = 12;
         if(null == sortBy) sortBy ="id";
-        return actorService.getActorPage(PageRequest.of(offset,pageSize));
-    }*/
+        return actorService.getActorPage(PageRequest.of( offset,pageSize));
+    }
 
 
     @GetMapping("/{id}")
